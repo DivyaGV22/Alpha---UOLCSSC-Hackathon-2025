@@ -1,0 +1,49 @@
+import random
+import datetime
+
+# -----------------------------
+# Simple rule-based chatbot
+# -----------------------------
+
+# Some canned responses
+GREETINGS = ["hi", "hello", "hey", "yo", "good morning", "good afternoon", "good evening"]
+GOODBYES = ["bye", "goodbye", "see ya", "cya", "quit", "exit"]
+
+def get_time():
+    now = datetime.datetime.now()
+    return now.strftime("%H:%M")
+
+def generate_response(user_message: str) -> str:
+    msg = user_message.lower().strip()
+
+    # 1. Greetings
+    if any(greet in msg for greet in GREETINGS):
+        return random.choice([
+            "Hey there! 😊",
+            "Hello! How can I help you today?",
+            "Hi! What’s up?",
+        ])
+
+    # 2. Asking for time
+    if "time" in msg:
+        return f"The current time is {get_time()}."
+
+    # 3. Asking for name
+    if "your name" in msg:
+        return "I’m a simple Python chatbot 🤖. You can call me PyBot."
+
+    # 4. Small talk: how are you
+    if "how are you" in msg:
+        return random.choice([
+            "I’m just code, but I’m doing great! 😄 How about you?",
+            "All good here in the terminal. How are you?",
+        ])
+
+    # 5. Goodbye / exit
+    if any(word in msg for word in GOODBYES):
+        return "Bye! Type Ctrl+C or close the window to fully exit. 👋"
+
+    # 6. Fallback / default response
+    return random.choice([
+        "I’m not sure I understand, but I’m learning!",
+        "Interesting… tell me m
