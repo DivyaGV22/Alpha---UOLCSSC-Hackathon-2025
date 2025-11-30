@@ -30,7 +30,7 @@ class NutritionChatbot {
             this.disableChat();
         }
     }
-
+// Integrate OPENAI API Key
     setupEventListeners() {
         // Save API key
         this.saveKeyBtn.addEventListener('click', () => this.saveApiKey());
@@ -299,4 +299,5 @@ ADDITIONAL GUIDELINES:
 document.addEventListener('DOMContentLoaded', () => {
     new NutritionChatbot();
 });
+
 
