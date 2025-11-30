@@ -6,7 +6,6 @@ class NutritionChatbot {
         this.messages = [];
         this.initializeElements();
         this.loadApiKey();
-        this.setupEventListeners();
     }
 
     initializeElements() {
@@ -199,5 +198,6 @@ class NutritionChatbot {
 document.addEventListener('DOMContentLoaded', () => {
     new NutritionChatbot();
 });
+
 
 
