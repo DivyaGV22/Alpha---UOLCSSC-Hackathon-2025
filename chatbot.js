@@ -124,7 +124,7 @@ class NutritionChatbot {
             this.userInput.focus();
         }
     }
-
+// Call API Key
     async callOpenAI(userMessage) {
         // System prompt for nutrition chatbot - explicitly aligned with all 5 requirements
         const systemPrompt = `You are Alpha, a nutrition-focused chatbot that delivers clear, evidence-based food guidance to help users cut through misinformation.
@@ -299,5 +299,6 @@ ADDITIONAL GUIDELINES:
 document.addEventListener('DOMContentLoaded', () => {
     new NutritionChatbot();
 });
+
 
 
