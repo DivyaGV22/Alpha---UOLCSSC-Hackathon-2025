@@ -20,6 +20,7 @@ class NutritionChatbot {
         this.chatContainer = document.getElementById('chatContainer');
     }
 
+    //Load API Key
     loadApiKey() {
         const savedKey = CONFIG.getApiKey();
         if (savedKey) {
@@ -300,6 +301,7 @@ ADDITIONAL GUIDELINES:
 document.addEventListener('DOMContentLoaded', () => {
     new NutritionChatbot();
 });
+
 
 
 
