@@ -78,6 +78,7 @@ class NutritionChatbot {
         }, 3000);
     }
 
+    //Check Chat functions
     enableChat() {
         this.userInput.disabled = false;
         this.sendBtn.disabled = false;
@@ -301,6 +302,7 @@ ADDITIONAL GUIDELINES:
 document.addEventListener('DOMContentLoaded', () => {
     new NutritionChatbot();
 });
+
 
 
 
