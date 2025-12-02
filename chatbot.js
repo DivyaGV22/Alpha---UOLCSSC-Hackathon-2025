@@ -9,6 +9,7 @@ class NutritionChatbot {
         this.setupEventListeners();
     }
 
+    //Initialize elements
     initializeElements() {
         this.apiKeyInput = document.getElementById('apiKey');
         this.saveKeyBtn = document.getElementById('saveKeyBtn');
@@ -299,6 +300,7 @@ ADDITIONAL GUIDELINES:
 document.addEventListener('DOMContentLoaded', () => {
     new NutritionChatbot();
 });
+
 
 
 
