@@ -16,9 +16,10 @@ const CONFIG = {
         return false;
     },
     
-    // Check if API key exists
+    // Check if API key exists and save it
     hasApiKey: function() {
         return this.getApiKey() !== null && this.getApiKey() !== '';
     }
 };
+
 
