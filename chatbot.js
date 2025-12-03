@@ -51,7 +51,7 @@ class NutritionChatbot {
             }
         });
     }
-
+//save api key
     saveApiKey() {
         const key = this.apiKeyInput.value.trim();
         if (!key) {
@@ -302,6 +302,7 @@ ADDITIONAL GUIDELINES:
 document.addEventListener('DOMContentLoaded', () => {
     new NutritionChatbot();
 });
+
 
 
 
