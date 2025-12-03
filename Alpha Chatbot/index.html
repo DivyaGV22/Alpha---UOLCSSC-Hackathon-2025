@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpha Nutrition Chatbot</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Pre-load PDF.js for faster PDF processing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" crossorigin="anonymous"></script>
+    <script>
+        // Configure PDF.js worker
+        if (typeof pdfjsLib !== 'undefined') {
+            pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+            window.pdfjsLib = pdfjsLib;
+        }
+    </script>
+</head>
+<body>
+
+    <!--Initialising all the div tags we will be using-->
+    <div class="container">
+        <header>
+            <h1>🥗 Alpha - Your Nutrition Buddy</h1>
+            <p class="subtitle">Evidence-based nutrition guidance to cut through misinformation</p>
+            <div class="gamification-header" id="gamificationPanel">
+                <div class="gamification-top-row">
+                    <span class="top-label">Level</span>
+                    <span class="top-streak" id="streakDisplay">🔥 0 day</span>
+                    <span class="top-points" id="pointsDisplay">💰 0</span>
+                </div>
+                <div class="gamification-level-section">
+                    <div class="level-display" id="levelDisplay">Level 1</div>
+                    <div class="xp-bar-container">
+                        <div class="xp-bar" id="xpProgressBar"></div>
+                        <span class="xp-text" id="xpText">0 / 100 XP</span>
+                    </div>
+                </div>
+                <div class="gamification-actions">
+                    <button class="btn-icon" id="dashboardBtn" title="Dashboard">
+                        <span class="btn-icon-emoji">📊</span>
+                    </button>
+                    <button class="btn-icon" id="calendarBtn" title="Calendar">
+                        <span class="btn-icon-emoji">📅</span>
+                    </button>
+                    <button class="btn-icon" id="quizBtn" title="Take Quiz">
+                        <span class="btn-icon-emoji">📝</span>
+                    </button>
+                    <button class="btn-icon" id="statsBtn" title="Stats">
+                        <span class="btn-icon-emoji">📈</span>
+                    </button>
+                    <button class="btn-icon" id="achievementsBtn" title="Achievements">
+                        <span class="btn-icon-emoji">🏆</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <div class="api-key-section">
+            <div class="api-key-container">
+                <label for="apiKey">OpenAI API Key:</label>
+                <input type="password" id="apiKey" placeholder="Enter your OpenAI API key">
+                <button id="saveKeyBtn">Save Key</button>
+                <span id="keyStatus" class="status-indicator"></span>
+            </div>
+            <div class="privacy-notice">
+                <small>🔒 Your API key is stored locally. Disclaimer: This chatbot is for educational purposes only and doesn't replace professional medical advice.</small>
+            </div>
+        </div>
+
+        <div class="chat-container" id="chatContainer">
+            <div class="welcome-message" id="welcomeMessage">
+                <p>👋 Hi there! I'm Alpha, your evidence-based nutrition buddy. I help you cut through misinformation with real science!</p>
+                <p>What would you like to know about nutrition today?</p>
+                <div class="quick-replies">
+                    <button class="quick-reply-btn" data-reply="Show my dashboard">📊 Dashboard</button>
+                    <button class="quick-reply-btn" data-reply="Show calendar">📅 Calendar</button>
+                    <button class="quick-reply-btn" data-reply="Tell me more">Tell me more</button>
+                </div>
+            </div>
+            <div class="messages" id="messages"></div>
+        </div>
+
+        <div class="input-container">
+            <button class="input-icon" id="emojiBtn" title="Add emoji">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                    <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                    <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                </svg>
+            </button>
+            <button class="input-icon" id="attachmentBtn" title="Attach file">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path>
+                </svg>
+            </button>
+            <input type="text" id="userInput" placeholder="Enter your message..." disabled>
+            <input type="file" id="fileInput" style="display: none;" accept="image/*,text/*,.pdf,.doc,.docx">
+            <button id="sendBtn" disabled>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Emoji Picker -->
+        <div class="emoji-picker" id="emojiPicker">
+            <div class="emoji-picker-header">
+                <span>Select Emoji</span>
+                <button class="emoji-picker-close" id="closeEmojiPicker">&times;</button>
+            </div>
+            <div class="emoji-grid" id="emojiGrid">
+                <!-- Emojis will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!--Add all script tags -->
+    <script src="config.js"></script>
+    <script src="evidence-db.js"></script>
+    <script src="onboarding.js"></script>
+    <script src="nlp-utils.js"></script>
+    <script src="sentiment-analysis.js"></script>
+    <script src="ml-intent-classifier.js"></script>
+    <script src="rag-pipeline.js"></script>
+    <script src="pdf-parser.js"></script>
+    <script src="gamification.js"></script>
+    <script src="quiz-system.js"></script>
+    <script src="dashboard.js"></script>
+    <script src="calendar.js"></script>
+    <script src="fact-checker.js"></script>
+    <script src="trending-myths.js"></script>
+    <script src="source-credibility.js"></script>
+    <script src="product-safety.js"></script>
+    <script src="misinformation-tracker.js"></script>
+    <script src="emoji-picker.js"></script>
+    <script src="chatbot.js"></script>
+</body>
+</html>
+
