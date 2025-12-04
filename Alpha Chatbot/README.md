@@ -168,7 +168,7 @@ Edit `onboarding.js` to change questions or add new ones.
 
 ### Adjusting Persona
 
-Edit the `systemPrompt` in `chatbot.js` to modify Alpha's tone and behavior.
+Edit the `systemPrompt` in `chatbot.js` to modify Alpha's tone and behaviour.
 
 ## 🐛 Troubleshooting
 
@@ -215,4 +215,5 @@ This project is open source and available for personal and educational use.
 ## 🙏 Acknowledgments
 
 Built following a comprehensive design plan for evidence-based nutrition guidance. All evidence and citations are from reputable health authorities and peer-reviewed sources.
+
 
