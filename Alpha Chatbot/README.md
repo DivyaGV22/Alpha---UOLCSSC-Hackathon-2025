@@ -1,6 +1,6 @@
 # Alpha - Evidence-Based Nutrition Chatbot
 
-A production-ready, evidence-based nutrition chatbot that helps users cut through diet misinformation and make informed food choices. Built following a comprehensive design plan with personalized advice, myth debunking, and safety features.
+A production-ready, evidence-based nutrition chatbot that helps users cut through diet misinformation and make informed food choices. Built following a comprehensive design plan with personalized advice, myth debunking and safety features.
 
 ## 🎯 Core Features
 
@@ -215,3 +215,4 @@ This project is open source and available for personal and educational use.
 ## 🙏 Acknowledgments
 
 Built following a comprehensive design plan for evidence-based nutrition guidance. All evidence and citations are from reputable health authorities and peer-reviewed sources.
+
